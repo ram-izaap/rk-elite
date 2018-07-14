@@ -1,0 +1,172 @@
+<!--
+  Generated template for the SavedMapsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+      </button>
+
+    <ion-title>Saved Maps</ion-title>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <div padding>
+        <ion-segment [(ngModel)]="pet">
+          <ion-segment-button value="private">
+            Private
+          </ion-segment-button>
+          <ion-segment-button value="public">
+            Public
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+     <div *ngIf="members"> 
+      <div [ngSwitch]="pet">
+
+        <ion-list *ngSwitchCase="'public'">
+
+          <div *ngIf="show">
+
+            <div  *ngIf="members.status=='error'"> 
+               No Channels Found.
+            </div>
+
+          <ion-card  *ngFor="let member of members.publicMaps">
+
+              <ion-item>
+                  <ion-grid>
+                      <ion-row>
+                        <ion-col col-6>Group Name:</ion-col>
+                      
+                        <ion-col col-6 left>{{member.groupName}},{{member.createdDate | date:'MMM d, h:mm a'}}</ion-col>
+                      </ion-row>
+                      <ion-row>
+                          <ion-col col-6>CHID:</ion-col>
+                        
+                          <ion-col col-6 left>{{member.channelID}}</ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col col-6>Created By:</ion-col>
+                          
+                            <ion-col col-6 left>{{member.createdBy}}</ion-col>
+                          </ion-row>
+                          <ion-row>
+                              <ion-col col-6>Member Count:</ion-col>
+                            
+                              <ion-col col-6 left>{{member.memberCount}}</ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col col-4 center>
+                                    <ion-icon name="md-eye" (click)="view(member.channelID)"></ion-icon>
+                                </ion-col>
+                                <ion-col col-4 center>
+                                    <ion-icon name="md-star" *ngIf="member.favourite == '1'" (click)="favourite(member.groupid)"></ion-icon>
+                                    <ion-icon name="md-star-outline" *ngIf="member.favourite == '0'" (click)="favourite(member.groupid)"></ion-icon>
+                                </ion-col>
+                                <ion-col col-4 center>
+                                    <ion-icon name="trash" (click)="favourite(member.groupid)"></ion-icon>
+                                </ion-col>
+                              </ion-row>
+                    </ion-grid>
+                </ion-item>
+
+          </ion-card>
+          
+          </div>
+
+        </ion-list>
+      
+        <ion-list *ngSwitchCase="'private'" class="saved-map">
+
+          <div *ngIf="show">
+
+            
+                <div *ngIf="members.status=='error'">
+                    No Channels Found.
+                </div>
+
+            <ion-card *ngFor="let member of members.privateMaps">
+
+                <ion-item>
+                  <!-- <ion-avatar item-start>
+                    <img src="/assets/img/email_logo.png">
+                  </ion-avatar> -->
+                  <ion-grid>
+                      <ion-row>
+                        <ion-col col-6>Group Name:</ion-col>
+                      
+                        <ion-col col-6 left>{{member.groupName}},{{member.createdDate | date:'MMM d, h:mm a'}}</ion-col>
+                      </ion-row>
+                      <ion-row>
+                          <ion-col col-6>CHID:</ion-col>
+                        
+                          <ion-col col-6 left>{{member.channelID}}</ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col col-6>Created By:</ion-col>
+                          
+                            <ion-col col-6 left>{{member.createdBy}}</ion-col>
+                          </ion-row>
+                          <ion-row>
+                              <ion-col col-6>Member Count:</ion-col>
+                            
+                              <ion-col col-6 left>{{member.memberCount}}</ion-col>
+                            </ion-row>
+                            <ion-row class="action_buttons">
+                                <ion-col col-4 center>
+                                    <ion-icon name="md-eye" (click)="view(member.channelID)"></ion-icon>
+                                </ion-col>
+                                <ion-col col-4 center>
+                                    <ion-icon name="md-star" *ngIf="member.favourite == '1'" (click)="favourite(member.groupid)"></ion-icon>
+                                    <ion-icon name="md-star-outline" *ngIf="member.favourite == '0'" (click)="favourite(member.groupid)"></ion-icon>
+                                </ion-col>
+                                <ion-col col-4 center>
+                                    <ion-icon name="trash" (click)="favourite(member.groupid)"></ion-icon>
+                                </ion-col>
+                              </ion-row>
+                    </ion-grid>
+                    
+                </ion-item> 
+  
+              
+
+              <!-- <ion-row>
+                  <ion-col col-4>
+                    <button ion-button icon-start block color="" (click)="view(member.channelID)" tappable style="margin-top:0">
+                        <ion-icon name="md-eye"></ion-icon></button>
+                  </ion-col>
+                  <ion-col col-4>
+                      <button ion-button icon-start block color="" (click)="favourite(member.groupid)" tappable style="margin-top:0">
+                          <div *ngIf="member.favourite == '0'">
+                              <ion-icon name="md-star-outline"></ion-icon>
+                          </div>
+                          <div *ngIf="member.favourite == '1'">
+                              <ion-icon name="md-star"></ion-icon>                                 
+                          </div>
+                      </button>
+                    </ion-col>
+                    <ion-col col-4>
+                      <button ion-button icon-start block color="danger" (click)="delete(member.groupid)" tappable style="margin-top:0">
+                          <ion-icon name="trash"></ion-icon> </button>
+                    </ion-col>
+              </ion-row> -->
+
+
+              
+            </ion-card>
+         </div>
+      </ion-list>
+     </div>   
+  </div>
+</ion-content>

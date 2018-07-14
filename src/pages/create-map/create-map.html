@@ -1,0 +1,219 @@
+<!--
+  Generated template for the CreateMapPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- <ion-header>
+
+  <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+      </button>
+    <ion-title>CreateMap</ion-title>
+  </ion-navbar>
+
+</ion-header> -->
+
+<ion-header>
+
+  <ion-navbar>
+
+      <ion-buttons left>
+          <button ion-button icon-only (click)="dismiss()">
+              <ion-icon name="arrow-back"></ion-icon>
+          </button>
+       </ion-buttons>
+
+      <ion-title>Create Map</ion-title>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+   <!-- Map form -->
+   <!-- <div *ngIf="pageType == 'create'"> -->
+    <div *ngIf="pageType != 'view'">
+      <form [formGroup]="mapForm" class="list-form" >
+          <ion-item>
+              <ion-label floating>
+                <ion-icon name="mail" item-start class="text-primary"></ion-icon>
+                Display Name
+              </ion-label>
+              <ion-input formControlName="display_name" type="text" [class.invalid]="mapForm.controls.display_name.invalid && mapForm.controls.dirty"
+                placeholder="" >
+              </ion-input>
+          </ion-item>
+            <ion-item class="map-error" no-lines no-padding *ngIf="mapForm.controls.display_name.invalid  && mapForm.controls.display_name.dirty">
+              <p ion-text text-wrap>Please enter display name.</p>
+            </ion-item>
+      
+            <ion-item>
+								<ion-label floating>
+									<ion-icon name="lock" item-start class="text-primary"></ion-icon>
+									Channel ID
+								</ion-label>
+								<ion-input formControlName="join_key" type="text" [class.invalid]="mapForm.controls.join_key.invalid && mapForm.controls.join_key.dirty"
+									placeholder="">
+								</ion-input>
+            </ion-item>
+              <ion-item class="map-error" no-lines *ngIf="mapForm.controls.join_key.invalid  && mapForm.controls.join_key.dirty">
+               <p ion-text text-wrap>Please Enter Channel ID</p>
+             </ion-item>
+           
+       
+          <!-- <ion-list radio-group>
+            <ion-grid>
+              <ion-row>  
+                <ion-col col-6>
+                  <ion-item>
+                    <ion-label>Permanent</ion-label>
+                    <ion-radio checked="true" formControlName="permanent"  value="permanent"></ion-radio>
+                  </ion-item>
+                </ion-col>
+                <ion-col col-6>
+                  <ion-item>
+                      <ion-label>Temporary</ion-label>
+                      <ion-radio value="temporary" formControlName="temporary"></ion-radio>
+                    </ion-item>
+                </ion-col> 
+              </ion-row>
+            </ion-grid> 
+          </ion-list> -->
+
+          <ion-list radio-group [formControl]="mapForm.controls['type']">
+              <ion-grid>
+                <ion-row>  
+                  <ion-col col-6>
+                    <ion-item>
+                      <ion-label>Private</ion-label>
+                      <ion-radio value="PRIVATE" (click)="type('PRIVATE')"></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col col-6>
+                    <ion-item>
+                        <ion-label>Public</ion-label>
+                        <ion-radio value="PUBLIC"  (click)="type('PUBLIC')"></ion-radio>
+                      </ion-item>
+                  </ion-col> 
+                </ion-row>
+              </ion-grid> 
+            </ion-list> 
+			 
+			<div *ngIf = "location">		
+					<ion-grid>
+						<ion-row>  
+							<ion-col col-12>
+								<ion-item>
+									<ion-label floating>
+										<ion-icon name="home" item-start class="text-primary"></ion-icon>
+										Enter Your Address
+									</ion-label>
+										<ion-input type="text"   placeholder="">
+									</ion-input>
+								</ion-item>
+							</ion-col>
+						</ion-row>
+					</ion-grid>
+        
+					<ion-grid>
+							<ion-row>       
+								<ion-col col-12>
+										<button ion-button icon-start block color="dark" tappable (click)="showLocation()">Show location</button>
+								</ion-col>
+							</ion-row>
+					</ion-grid>   
+         
+          <ion-row>       
+            <ion-col col-6>
+					    <ion-item>
+                <ion-label> Lat : </ion-label>
+                  <ion-input type="text" formControlName="latitude" placeholder="" value = "12.3333333" disabled></ion-input>
+              </ion-item>
+            </ion-col>
+
+            <ion-col col-6>
+					    <ion-item>
+                <ion-label> Lon : </ion-label>
+                  <ion-input type="text"  formControlName="longitude" placeholder="" value = "18.025555" disabled></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>     
+			</div>	
+
+        <ion-list class="mrg-bottom" radio-group [formControl]="mapForm.controls['protectionType']">
+            <ion-grid>
+              <ion-row>  
+                <ion-col col-12>
+                  <ion-item>
+                    <ion-label>Require Password</ion-label>
+                    <ion-radio value="PASSWORD"  (click)="protection_type('PASSWORD')"></ion-radio>
+                  </ion-item>
+								</ion-col>
+							</ion-row>
+							<ion-row>  
+                  <ion-col col-12>
+                    <ion-item>
+                      <ion-label>Allow and Deny</ion-label>
+                      <ion-radio value="REQUEST"  (click)="protection_type('REQUEST')"></ion-radio>
+                    </ion-item>
+									</ion-col>
+								</ion-row>
+								<ion-row>  
+										<ion-col col-12>
+											<ion-item>
+														<ion-label>No Map Protection</ion-label>
+														<ion-radio checked="true" value="NORMAL" (click)="protection_type('NORMAL')"></ion-radio>
+											</ion-item>
+										</ion-col> 
+								</ion-row>
+
+            </ion-grid> 
+					</ion-list> 
+					
+					<ion-item *ngIf = "password">
+							<ion-label floating>
+								<ion-icon name="" item-start class="text-primary"></ion-icon>
+								Password
+							</ion-label>
+							<ion-input  type="text" formControlName="password" placeholder="">
+							</ion-input>
+					</ion-item>
+            <br>  
+            <button ion-button icon-start block color="dark" tappable [disabled]="mapForm.invalid" (click)="createMap()">SAVE</button>
+        </form>
+      </div>
+    <!-- </div> -->
+
+    <div *ngIf="pageType == 'view'">
+      <ion-card>
+          <ion-item>
+            <h2>Name</h2>
+            <p>{{groupInfo.name}}</p>
+          </ion-item>
+
+          <ion-item>
+            <h2>Type</h2>
+            <p>{{groupInfo.type}}</p>
+          </ion-item>
+
+          <ion-item>
+            <h2>Location Type</h2>
+            <p>{{groupInfo.locationType}}</p>
+          </ion-item>
+
+          <!-- <hr /> -->
+
+          <!-- <ion-row>
+            <ion-col>
+              <button ion-button icon-left clear small (click)="goBack()">
+                <ion-icon name="arrow-back"></ion-icon>
+                <div>Back</div>
+              </button>
+            </ion-col>
+          </ion-row> -->
+       </ion-card>
+    </div>
+</ion-content>

@@ -1,0 +1,8 @@
+{
+  "name": "RK-Elite",
+  "app_id": "109cf23d",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

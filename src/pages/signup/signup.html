@@ -1,0 +1,123 @@
+<!-- -->
+<ion-content class="auth-page">
+  <div class="login-content">
+    
+    <!-- Logo -->
+    <div padding text-center>
+      <div class="logo"></div>
+      <h2 ion-text class="text-primary">
+        <strong>Create An</strong> Account
+      </h2>
+    </div>
+
+    <form [formGroup]="_guestForm" class="list-form">
+
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="person" item-start class="text-primary"></ion-icon>
+          Guest ID
+        </ion-label>
+        <ion-input formControlName="guest_id" type="text" [class.invalid]="_guestForm.controls.guest_id.invalid && _guestForm.controls.dirty"
+          placeholder=""  value="">
+        </ion-input>
+      </ion-item>
+
+      <ion-item class="login-error" no-lines *ngIf="_guestForm.controls.guest_id.invalid  && _guestForm.controls.guest_id.dirty">
+				<p ion-text text-wrap>Please enter guest id.</p>
+      </ion-item>
+      <br />
+      <button ion-button block color="dark" tappable (click)="guest()">
+        Continue as a Guest
+     </button>
+    </form>
+
+    <p text-center ion-text color="secondary">------ Or ------</p>
+
+    <!-- Login form -->
+    <form [formGroup]="_signUpForm" class="list-form">
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="person" item-start class="text-primary"></ion-icon>
+          Default Id
+        </ion-label>
+        <ion-input formControlName="default_id" type="text" [class.invalid]="_signUpForm.controls.default_id.invalid && _signUpForm.controls.dirty"
+          placeholder=""  value="">
+        </ion-input>
+      </ion-item>
+      <ion-item class="login-error" no-lines *ngIf="_signUpForm.controls.default_id.invalid  && _signUpForm.controls.default_id.dirty">
+				<p ion-text text-wrap>Please enter default id.</p>
+			</ion-item>
+
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+          Phonenumber
+        </ion-label>
+        <ion-input formControlName="phone_number" type="number" [class.invalid]="_signUpForm.controls.phone_number.invalid && _signUpForm.controls.dirty"
+          placeholder=""  value="">
+        </ion-input>
+      </ion-item>
+      <ion-item class="login-error" no-lines *ngIf="_signUpForm.controls.phone_number.invalid  && _signUpForm.controls.phone_number.dirty">
+				<p ion-text text-wrap>Phonenumber must be at least 10 digits long</p>
+			</ion-item>
+
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="mail" item-start class="text-primary"></ion-icon>
+          Email
+        </ion-label>
+        <ion-input formControlName="email" type="email" [class.invalid]="_signUpForm.controls.email.invalid && _signUpForm.controls.dirty"
+          placeholder=""  value="">
+        </ion-input>
+      </ion-item>
+      <ion-item class="login-error" no-lines *ngIf="_signUpForm.controls.email.invalid  && _signUpForm.controls.email.dirty">
+				<p ion-text text-wrap>Please use correct email format, e.g.:someone@domain.com.</p>
+			</ion-item>
+
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+          Password
+        </ion-label>
+        <ion-input formControlName="password" [type]="passwordInputType" [class.invalid]="_signUpForm.controls.password.invalid && _signUpForm.controls.password.dirty"
+				  placeholder="">
+				</ion-input>
+      </ion-item>
+      <ion-item class="login-error" no-lines *ngIf="_signUpForm.controls.password.invalid  && _signUpForm.controls.password.dirty">
+				<p ion-text text-wrap>Password must be at least 6 characters long</p>
+      </ion-item>
+
+      <br />
+      
+       <button ion-button block color="dark" tappable (click)="register()">
+        SIGN UP
+      </button>
+    </form>
+
+    <!-- <div margin-top>
+      <p text-center ion-text color="secondary">Or Sign Up with:</p>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            <button ion-button icon-only block class="btn-facebook">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col col-4>
+            <button ion-button icon-only block class="btn-gplus">
+              <ion-icon name="logo-googleplus"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div> -->
+
+    <!-- Other links -->
+    <div text-center margin-top>
+      <span ion-text color="primary" tappable (click)="login()">I have an account</span>
+    </div>
+
+    <br /><br /><br />
+
+  </div>
+</ion-content>

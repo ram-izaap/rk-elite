@@ -1,0 +1,45 @@
+page-current-map-members {
+	.map-members-list {
+        h6 {
+            white-space: initial;
+        }
+
+        ion-icon {
+            margin-right:15px;
+        }
+
+        .members-list  {
+        	display:inline;
+        	display: inline-block;
+	        	li {
+	        		display: inline-block;
+	        		width:50%;
+	        	}
+        }  
+    }
+
+    .member-loop {
+        display: block;
+        padding:15px;
+        margin-bottom:15px;
+        border-radius:3px;
+        border:1px solid #cfcfcf;
+        text-transform: uppercase;
+        color:#586069;
+        padding-left: 15px;
+        font-size:0.9em;
+
+        &:nth-child(odd) {
+            background:#fdfbfb;
+        }
+
+        h6 {
+            font-size:1.1em;
+            font-weight: normal;
+            color:color($colors, primary) !important;
+            padding:5px 15px;
+            background-color:rgba(color($colors, primary), 0.1);
+            margin-left: -15px;
+        }
+    }
+}

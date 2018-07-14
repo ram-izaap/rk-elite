@@ -1,0 +1,25 @@
+page-login, .login {
+	
+	.view-password {
+		right: 0;
+		bottom: 5px;
+		font-size:0.9em;
+		color:#fff;
+	}
+}
+
+
+ .auth-page {
+    background-color: #fff;
+    &::after {
+      content: "";
+      background: url("../assets/img/main-bg.jpg") no-repeat;
+      background-size: cover;
+      top: 0;
+      left: -5px;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      z-index: 0;
+    }
+}

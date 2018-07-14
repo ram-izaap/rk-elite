@@ -1,0 +1,83 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>Update</ion-title>
+    <ion-buttons end>
+        <button ion-button (click)="dismiss()">
+          <span ion-text color="primary" showWhen="ios">Cancel</span>
+          <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+        </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div *ngIf="updateType=='password'">
+    <form [formGroup]="changePasswordForm">
+    
+      <ion-item>
+        <ion-label floating>
+          Password
+        </ion-label>
+        <ion-input type="password" formControlName="password"  [class.invalid]="changePasswordForm.controls.password.invalid && changePasswordForm.controls.password.dirty"   >
+        </ion-input>
+      </ion-item>
+			
+      <ion-item>
+        <ion-label floating>
+           Confirm  Password
+        </ion-label>
+        <ion-input type="password" formControlName="confirm_password"  [class.invalid]="changePasswordForm.controls.confirm_password.invalid && changePasswordForm.controls.confirm_password.dirty" >
+				</ion-input>
+      </ion-item>
+      <ion-grid>
+    <ion-row>
+      <ion-col col-12 text-center>
+        <button ion-button round [disabled]="changePasswordForm.invalid" (click)="updatePassword()" >UPDATE</button>
+      </ion-col>
+  </ion-row>
+</ion-grid>
+
+  </form>
+  </div>
+
+  <div *ngIf="updateType=='profile'">
+      <form [formGroup]="profileForm">
+        <ion-item>
+          <ion-label floating>
+           Default ID
+          </ion-label>
+          <ion-input type="text" formControlName="default_id" type="text" [class.invalid]="profileForm.controls.default_id.invalid && profileForm.controls.default_id.dirty" >
+            
+          </ion-input>
+        </ion-item>
+          
+        <ion-item>
+          <ion-label floating>
+              Email
+          </ion-label>
+          <ion-input type="text" formControlName="email" type="text" [class.invalid]="profileForm.controls.email.invalid && profileForm.controls.email.dirty">
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>
+          Phonenumber
+          </ion-label>
+          <ion-input type="text" formControlName="phone_number" type="text" [class.invalid]="profileForm.controls.phone_number.invalid && profileForm.controls.phone_number.dirty">
+          </ion-input>
+        </ion-item>
+        
+        <ion-grid>
+          <ion-row>
+          <ion-col col-12 text-center>
+            <button ion-button round [disabled]="profileForm.invalid" (click)="updateProfile()" >UPDATE</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+
+      </form>
+  </div>
+</ion-content>
+

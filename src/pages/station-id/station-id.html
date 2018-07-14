@@ -1,0 +1,36 @@
+<!--
+  Generated template for the StationIdPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-title>Stations</ion-title>
+  
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+    <ion-list radio-group>
+       <ion-label>
+          <p>Current Station : {{userInfo.profile.stationID}}</p>
+        </ion-label>
+        <ion-item-sliding *ngFor="let group of groups">
+          <ion-item>
+            <ion-label>
+              <!-- <p *ngIf="group.joinKey == stationid">Current Station</p> <br> -->
+                {{group.name}}</ion-label>
+            <ion-radio value={{group.joinKey}} (click)="update(group.joinKey)" [checked]="group.joinKey == userInfo.profile.stationID"></ion-radio>
+          </ion-item>
+        </ion-item-sliding>
+        
+      </ion-list>
+</ion-content>

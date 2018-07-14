@@ -1,0 +1,21 @@
+page-notification {
+    .notification-list {
+        h6 {
+            white-space: initial;
+        }
+
+        ion-icon {
+            margin-right:15px;
+        }  
+    }
+
+    .bottom-bubble {
+        position: absolute;
+        right:25px;
+        bottom:25px;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        z-index: 9;
+    }
+}

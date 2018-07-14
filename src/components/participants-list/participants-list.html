@@ -1,0 +1,199 @@
+ 
+  <!-- <ion-content padding> -->
+    
+     <ion-tabs class="participants-tab">
+        <ion-tab [root]="tabOne"  tabTitle="ALL" tabIcon=""></ion-tab>
+        <ion-tab [root]="tabTwo"  tabTitle="Visibles" tabIcon=""></ion-tab>
+        <ion-tab [root]="tabThree" tabTitle="InVisibles" tabIcon=""></ion-tab>
+        <ion-tab [root]="tabFour" tabTitle="Clues" tabIcon=""></ion-tab>
+        <!-- <ion-tab [root]="tabFive"   tabTitle="Lock" tabIcon="lock"></ion-tab> -->
+     </ion-tabs>
+
+    
+    <!-- <ion-tabs #ionTabs [scrollable-tabs]="ionTabs" [opts]="scrollableTabsopts" selectedIndex='0' color="{{tabsColor}}" mode='{{tabsMode}}'
+    tabsHighlight="true" tabsPlacement="{{tabsPlacement}}">
+        <ion-tab [root]="HomeRoot" [show]='tabToShow[0]' tabIcon="showall" tabTitle="Show All"></ion-tab>
+        <ion-tab [root]="CalendarRoot" [show]='tabToShow[1]' tabIcon="visible" tabTitle="Visible"></ion-tab>
+        <ion-tab [root]="CameraRoot" [show]='tabToShow[2]' tabIcon="invisible" tabTitle="Invisible"></ion-tab>
+        <ion-tab [root]="CloudRoot" [show]='tabToShow[3]' tabIcon="clues" tabTitle="Clues"></ion-tab>
+        <ion-tab [root]="ContactRoot" [show]='tabToShow[4]' tabIcon="link" tabTitle="Link"></ion-tab>
+        <ion-tab [root]="FolderRoot" [show]='tabToShow[5]' tabIcon="messages" tabTitle="Messages"></ion-tab>
+        <ion-tab [root]="MapRoot" [show]='tabToShow[6]' tabIcon="alert" tabTitle="Alert"></ion-tab>
+    </ion-tabs> -->
+      <!-- <ion-grid>
+          <ion-item>
+            Demonstarte ion-tab [show] property.
+          </ion-item>
+          <ion-row>
+            <ion-col width-50>
+              <ion-list>
+                <ion-item>
+                  <ion-label>Home</ion-label>
+                  <ion-toggle [(ngModel)]="tabToShow[0]" (ionChange)='refreshScrollbarTabs()'></ion-toggle>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Calendar</ion-label>
+                  <ion-toggle [(ngModel)]="tabToShow[1]" (ionChange)='refreshScrollbarTabs()'></ion-toggle>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Camera</ion-label>
+                  <ion-toggle [(ngModel)]="tabToShow[2]" (ionChange)='refreshScrollbarTabs()'></ion-toggle>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Cloud</ion-label>
+                  <ion-toggle [(ngModel)]="tabToShow[3]" (ionChange)='refreshScrollbarTabs()'></ion-toggle>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Contact</ion-label>
+                  <ion-toggle [(ngModel)]="tabToShow[4]" (ionChange)='refreshScrollbarTabs()'></ion-toggle>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+            <ion-col width-50>
+              <ion-list>
+                <ion-item>
+                  <ion-label>Folder</ion-label>
+                  <ion-toggle [(ngModel)]="tabToShow[5]" (ionChange)='refreshScrollbarTabs()'></ion-toggle>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Map</ion-label>
+                  <ion-toggle [(ngModel)]="tabToShow[6]" (ionChange)='refreshScrollbarTabs()'></ion-toggle>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Settings</ion-label>
+                  <ion-toggle [(ngModel)]="tabToShow[7]" (ionChange)='refreshScrollbarTabs()'></ion-toggle>
+                </ion-item>
+                <ion-item>
+                  <ion-label>About</ion-label>
+                  <ion-toggle [(ngModel)]="tabToShow[8]" (ionChange)='refreshScrollbarTabs()'></ion-toggle>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+        </ion-grid> -->
+        
+        <!-- <div padding>
+            <ion-segment [(ngModel)]="part">
+              <ion-segment-button value="show">
+                  Show All
+              </ion-segment-button>
+              <ion-segment-button value="visible">
+                  Visible
+              </ion-segment-button>
+              <ion-segment-button value="invisible">
+                  InVisible
+              </ion-segment-button>
+              <ion-segment-button value="clues">
+                    Clues
+              </ion-segment-button>
+               <ion-segment-button value="link">
+                    Link
+              </ion-segment-button>
+              <ion-segment-button value="messages">
+                    Messages
+              </ion-segment-button>
+              <ion-segment-button value="alert">
+                    Alert
+              </ion-segment-button> 
+            </ion-segment>
+          </div>
+          
+          <div [ngSwitch]="part">
+            <ion-list *ngSwitchCase="'show'">
+              <ion-item *ngFor = "let member of members">
+                  <ion-row >
+                      <ion-col col-3 center class="">
+                          <img src="assets/img/user.png">
+                      </ion-col>
+                      <ion-col col-3 center class="">
+                        <ion-col col-2>DN:{{member.profile.defaultID}}</ion-col><br>
+                        <ion-col col-2>CHID:{{member.profile.stationID}}</ion-col>
+                      </ion-col>
+                      <div *ngIf="member.group.view == '1'">
+                      <ion-col col-3 center class="" (click)="locations(member)">
+                        <ion-icon name="md-locate"></ion-icon>
+                      </ion-col>
+                
+                      <ion-col col-3 center class="" (click)="contacts(member)">
+                        <ion-icon name="md-contact"></ion-icon>
+                      </ion-col>
+                    </div>
+                    </ion-row> 
+                    
+              </ion-item>
+            </ion-list>
+          
+            <ion-list *ngSwitchCase="'visible'">
+                
+              <ion-item *ngFor = "let member of members">
+                  <div *ngIf="member.group.view == '1'">
+                  <ion-row>
+                      <ion-col col-3 center class="">
+                          <img src="assets/img/user.png">
+                      </ion-col>
+                      <ion-col col-3 center class="">
+                        <ion-col col-2>DN:{{member.profile.defaultID}}</ion-col><br>
+                        <ion-col col-2>CHID:{{member.profile.stationID}}</ion-col>
+                      </ion-col>
+                      
+                      <ion-col col-3 center class="" (click)="locations(member)">
+                        <ion-icon name="md-locate"></ion-icon>
+                      </ion-col>
+                
+                      <ion-col col-3 center class="" (click)="contacts(member)">
+                        <ion-icon name="md-contact"></ion-icon>
+                      </ion-col>
+                    </ion-row>
+                  </div>
+              </ion-item>
+              
+            </ion-list>
+            
+            <ion-list *ngSwitchCase="'invisible'">
+               
+                <ion-item *ngFor = "let member of members">
+                    <div *ngIf="member.group.view == '0'">
+                    <ion-row >
+                        <ion-col col-3 center class="">
+                            <img src="assets/img/user.png">
+                        </ion-col>
+                        <ion-col col-3 center class="">
+                          <ion-col col-2>DN:{{member.profile.defaultID}}</ion-col><br>
+                          <ion-col col-2>CHID:{{member.profile.stationID}}</ion-col>
+                        </ion-col> 
+                      </ion-row>
+                    </div>
+                </ion-item>
+                
+              </ion-list>
+  
+              
+            <ion-list *ngSwitchCase="'clues'">
+              
+                <ion-item *ngFor = "let member of members">
+                    <div *ngIf="member.group.locationType=='STATICMAP'">
+                    <ion-row >
+                        <ion-col col-3 center class="">
+                            <img src="assets/img/user.png">
+                        </ion-col>
+                        <ion-col col-3 center class="">
+                          <ion-col col-2>DN:{{clue.profile.defaultID}}</ion-col><br>
+                          <ion-col col-2>CHID:{{clue.profile.stationID}}</ion-col>
+                        </ion-col>
+                        
+                        <ion-col col-3 center class="" (click)="locations(clue)">
+                          <ion-icon name="md-locate"></ion-icon>
+                        </ion-col>
+                  
+                        <ion-col col-3 center class="" (click)="contacts(clue)">
+                          <ion-icon name="md-contact"></ion-icon>
+                        </ion-col>
+                      </ion-row>
+                    </div>
+                </ion-item>
+               
+              </ion-list>
+  
+          </div> -->
+  <!-- </ion-content>  -->
+  

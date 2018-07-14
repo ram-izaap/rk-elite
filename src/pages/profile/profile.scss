@@ -1,0 +1,39 @@
+page-profile {
+    .row{
+        margin-bottom: 6px;
+    }
+
+    [user-profile] {
+    	text-align: center;
+    	position: relative;
+		background:transparent;
+		margin-bottom: 30px;
+    	// max-height:50px;
+
+    	img {
+    		border-radius:50%;
+    		border:3px solid #fff;
+    		// position: relative;
+      //       z-index: 999;
+    		// top:-40px;
+      //       contain:layout !important;
+    	}
+
+
+    	[center] {
+    		display: inline-block;
+    		margin: 0 auto;
+            margin-top: -40px;
+    	}
+    }
+
+
+
+    .profile-mat {
+    	// background:#00a6ff;
+    	padding: 40px 0;
+        position: relative;
+        z-index: 0;
+    }
+
+}
