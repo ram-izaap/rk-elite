@@ -507,3 +507,22 @@
     animation-name: fadeInDown;
   }
   
+
+
+  // RK ELITE Starts
+
+  .toolbar button.bar-buttons {
+    color: $main-text-color;
+  }
+  
+  .toolbar-background {
+    background-color: $main-color;
+  }
+
+  .toolbar-title {
+    color: $main-text-color;
+  }
+
+  .menu-inner .content .item{
+    background-color: $main-color;
+  }
