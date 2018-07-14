@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Geolocation } from '@ionic-native/geolocation';
 //import { Observable } from 'rxjs/Observable';
 import { forkJoin } from "rxjs/observable/forkJoin";
 
@@ -270,24 +269,7 @@ export class SignupPage {
   getCurrentPosition(user_id){
     //console.log(user_id);
      // get current position
-      this.geolocation.getCurrentPosition().then(pos => {
-        console.log('lat: ' + pos.coords.latitude + ', lon: ' + pos.coords.longitude);
-
-        let httpResponse = pos;
-        this.position.userId      = user_id;
-        this.position.latitude    = httpResponse.coords.latitude;
-        this.position.longitude   = httpResponse.coords.longitude;
-        this.position.speed       = httpResponse.coords.speed;
-        this.position.altitude    = httpResponse.coords.altitude;
-      //  this.position.bearing     = httpResponse.coords.bearing;
-        this.position.bearing     = 0;
-        this.position.accuracy    = httpResponse.coords.accuracy;
-        this.position.type        = this.position.type;
-
-          this.userProvider.position(this.position).subscribe(resp => {
-            console.log(resp);
-          });
-      });
+     
 
       // const watch = this.geolocation.watchPosition().subscribe(pos => {
       //   console.log('lat: ' + pos.coords.latitude + ', lon: ' + pos.coords.longitude);
