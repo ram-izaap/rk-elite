@@ -1,12 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, MenuController, LoadingController, AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { BackgroundGeolocation, BackgroundGeolocationConfig, BackgroundGeolocationResponse } from '@ionic-native/background-geolocation';
 
 //PLUGINS
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { FCM } from '@ionic-native/fcm';
 
 //PROVIDERS
 import { UserProvider } from '../providers/user/user';
@@ -37,7 +35,6 @@ export class MyApp {
 	public pages: Array<{title: string, component: string}>;
 	private deviceToken: string;
 	private userInfo: any;
-	private config: BackgroundGeolocationConfig;
 	private position: positionOptions;
 
   constructor(  public platform: Platform, 
@@ -48,25 +45,15 @@ export class MyApp {
 				private ionicStorage: Storage,
 				private loadingController: LoadingController,
 				private menuController: MenuController,
-				private alertController: AlertController,
-				private fcm: FCM,
-				private backgroundGeolocation: BackgroundGeolocation
+				private alertController: AlertController
 			) {
 	
 	// if user enters from login/signup/app in background
 	this.userProvider.authStatus$.subscribe(authStatus => {
 
-		if(authStatus === true){
-
-			if (this.platform.is('cordova')) {
-				this.platform.ready().then(() => {
-					this.initFCM();
-				});
-			}
-
+		if(authStatus === true) {
 			this.menuController.enable(true);
-			this.nav.setRoot("HomePage");	
-			
+			this.nav.setRoot("HomePage");
 		}
 
 	});	
@@ -123,88 +110,13 @@ export class MyApp {
 
     this.platform.ready().then(() => {
 		this.statusBar.styleDefault();
-		this.splashScreen.hide();
-
-		let url = 'http://34.210.14.110/api/index.php/notification_upload/position_update/'+this.userInfo.profile.id;
-
-		this.config = {
-					desiredAccuracy: 10,
-					stationaryRadius: 20,
-					distanceFilter: 30,
-					debug: true,
-					stopOnTerminate: false
-				//	url: url
-				//	syncUrl: url
-	    };
-
-	this.backgroundGeolocation.configure(this.config)
-	.subscribe((location: BackgroundGeolocationResponse) => {
-		
-		console.log('BackgroundGeolocation:  ' + location.latitude + ',' + location.longitude);
-
-		this.position = {
-				userId: this.userInfo.profile.id,
-				latitude: location.latitude,
-				longitude: location.longitude,
-				locationData: location
-		};
-
-		this
-		.userProvider
-		.userPositionUpdate(this.position)
-		.subscribe( ( resp:any ) => {
-			 
-		}); 
-
-		this.backgroundGeolocation.finish();
-		
-	});
-		this.backgroundGeolocation.start(); 	
-		//this.backgroundGeolocation.stop();
-	
+		this.splashScreen.hide();	
 	});
 	
 
   }
 
-  private initFCM() {
-
-	this.fcm.getToken().then(token =>{
-			console.log("user device token : "+token);
-			this.deviceToken = token;
-			this.updateUserDeviceToken();
-	});
-
-	this.fcm.onNotification().subscribe( data => {
-
-		if(data.wasTapped)
-		{
-			console.log("Received in background");
-			let notificationData = JSON.stringify(data);
-			console.log('notificationData: '+ notificationData);
-
-		} 
-		else 
-		{
-
-			console.log("Received in foreground");
-			let notificationData = JSON.stringify(data);
-			console.log('notificationData: '+ notificationData);
-
-		};
-		
-	});
-
-	this.fcm.onTokenRefresh().subscribe( token =>{
-
-		this.deviceToken = token;
-		console.log("refreshtoken : "+token);
-		this.updateUserDeviceToken();
-
-	});
-  }
-
-
+  
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
