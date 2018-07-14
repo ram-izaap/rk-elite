@@ -13,7 +13,7 @@
     <form [formGroup]="loginForm" class="list-form" relative>
       <ion-item>
         <ion-label floating>
-          <ion-icon name="mail" item-start class="text-primary"></ion-icon>
+          <ion-icon name="mail" item-start class="text-red"></ion-icon>
           Email
         </ion-label>
         <ion-input formControlName="email" type="email" [class.invalid]="loginForm.controls.email.invalid && loginForm.controls.dirty"
@@ -26,17 +26,18 @@
 
       <ion-item>
         <ion-label floating>
-          <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+          <ion-icon name="lock" item-start class="text-red"></ion-icon>
           Password
         </ion-label>
         <ion-input formControlName="password" [type]="passwordInputType" [class.invalid]="loginForm.controls.password.invalid && loginForm.controls.password.dirty"
 				  placeholder="">
 				</ion-input>
-
-			</ion-item>
+      </ion-item>
+      
 			<ion-item class="login-error" no-lines *ngIf="loginForm.controls.password.invalid  && loginForm.controls.password.dirty">
 				<p ion-text text-wrap>Password must be at least 6 characters long</p>
       </ion-item>
+      
 			<div icon-only absolute class="no-shadow view-password white" (click)="toggleViewPassword($event)">
 				<ion-icon name="eye"></ion-icon>
 			</div>
@@ -45,24 +46,9 @@
     <p text-right ion-text color="secondary" tappable (click)="forgotPass()"><strong>Forgot Password?</strong></p>
 
     <div>
-      <button ion-button icon-start block color="dark" tappable [disabled]="loginForm.invalid" (click)="login()">Login</button>
+      <button ion-button icon-start block tappable [disabled]="loginForm.invalid" (click)="login()">Login</button>
 
-      <p text-center ion-text color="secondary">Or Sign in with:</p>
-
-      <!-- <ion-grid>
-        <ion-row>
-          <ion-col col-4>
-            <button ion-button icon-only block class="btn-facebook">
-              <ion-icon name="logo-facebook"></ion-icon>
-            </button>
-          </ion-col>
-          <ion-col col-4>
-            <button ion-button icon-only block class="btn-gplus">
-              <ion-icon name="logo-googleplus"></ion-icon>
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-grid> -->
+      <p text-center ion-text color="secondary">Or Sign in with:</p>      
 
     </div>
 
