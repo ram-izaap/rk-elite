@@ -21,6 +21,11 @@ import { UserInterface,
   templateUrl: 'home.html',
 })
 export class HomePage {
+
+	private _memberParams = { title: "Members" };
+  	private _donationParams = { title: "Donations" };
+  	private _doneeParams = { title: "Donees" };
+
 	private search_form: FormGroup;
 	public joinkey : any;
 	private userInfo: UserInterface;
@@ -56,15 +61,10 @@ export class HomePage {
 		//this.viewMyMap();
 	}
 
-	searchJoinkey(){
-		 this.joinkey = this.search_form.value.joinkey;
-		 this.navCtrl.setRoot('SearchPage', {joinkey: this.joinkey});
-	}
-
-
-	shareLocation(){
-		let sharelocationModal = this.modalCtrl.create('ShareLocationPage');
-		sharelocationModal.present();
+	goToPage(page: string) {
+		if (page) {
+			this.navCtrl.push(page);
+		}		
 	}
 
 	viewMyMap(){

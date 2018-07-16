@@ -81,9 +81,9 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
 			{ title: 'Home', component: 'HomePage' },
-			{ title: 'Profile', component: 'ProfilePage' },
-			{ title: 'Change Station Id', component: 'StationIdPage'},
-			{ title: 'Search', component: 'SearchPage' },
+			{ title: 'Members Registration', component: 'MemberRegistrationPage' },
+			{ title: 'Your Donations', component: 'StationIdPage'},
+			{ title: 'Donate', component: 'SearchPage' },
 			{ title: 'Maps', component: 'MapsPage' },
 			{ title: 'View My Current Map Members', component: 'CurrentMapMembersPage' },
 			{ title: 'Saved Maps', component: 'SavedMapsPage'},

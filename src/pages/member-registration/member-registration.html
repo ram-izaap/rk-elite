@@ -1,0 +1,134 @@
+<ion-header>
+	<ion-navbar>  
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>  
+		<ion-title>Member Registration</ion-title>  
+	</ion-navbar>  
+</ion-header>
+
+
+<ion-content>
+  <form [formGroup]="_signupForm" (submit)="_signup($event)">
+		
+
+		<!-- FIRST NAME -->
+		<div class="signin-spacing">
+			<ion-item>
+				<ion-label stacked color="primary">First Name *</ion-label>
+				<ion-input formControlName="first_name" type="text" [class.invalid]="_signupForm.controls.first_name.valid && (_signupForm.controls.first_name.dirty || _signupForm.controls.first_name.touched)" placeholder="Your first name" value="" [(ngModel)]="firstName">
+        </ion-input>
+			</ion-item>
+			<!-- first_name error message -->
+			<ion-item  no-lines *ngIf="_signupForm.controls.first_name.invalid  && (_signupForm.controls.first_name.dirty || _signupForm.controls.first_name.touched)">
+				<p ion-text text-wrap class="form-error">First name should contain only letters and contain at least 3 characters.</p>
+			</ion-item>
+		</div>
+
+		<!-- LAST NAME -->
+		<div class="signin-spacing">
+			<ion-item>
+				<ion-label stacked color="primary">Last Name *</ion-label>
+				<ion-input formControlName="last_name" type="text" [class.invalid]="_signupForm.controls.last_name.invalid && (_signupForm.controls.last_name.dirty || _signupForm.controls.last_name.touched)" placeholder="Your last name" [value]="_lastForTesting" [(ngModel)]="lastName"></ion-input>
+			</ion-item>
+			<!-- last_name error message -->
+			<ion-item no-lines *ngIf="_signupForm.controls.last_name.invalid  && (_signupForm.controls.last_name.dirty || _signupForm.controls.last_name.touched)">
+				<p ion-text text-wrap class="form-error">Last name should contain only letters and contain at least 3 characters.</p>
+			</ion-item>
+		</div>
+
+		<!-- PHONE -->
+		<div class="signin-spacing">
+			<ion-item>
+				<ion-label stacked color="primary">Sex</ion-label>
+			</ion-item>
+
+			<ion-segment formControlName="sex" color="primary">
+				<ion-segment-button value="M">
+					Male
+				</ion-segment-button>
+				<ion-segment-button value="F">
+					Female
+				</ion-segment-button>
+			</ion-segment>
+
+			<!-- phone error message -->
+			<ion-item no-lines *ngIf="_signupForm.controls.sex.invalid  && _signupForm.controls.sex.dirty">
+				<p ion-text text-wrap class="form-error">Phone number should contain numbers only, and be at least 10 digits long</p>
+			</ion-item>
+		</div>
+
+		<!-- PHONE -->
+		<div class="signin-spacing">
+			<ion-item>
+				<ion-label stacked color="primary">Phone Number</ion-label>
+				<ion-input formControlName="phone" type="tel" [class.invalid]="_signupForm.controls.phone.invalid && _signupForm.controls.phone.dirty"
+				  placeholder="Area code + phone number" value=""></ion-input>
+			</ion-item>
+			<!-- phone error message -->
+			<ion-item no-lines *ngIf="_signupForm.controls.phone.invalid  && _signupForm.controls.phone.dirty">
+				<p ion-text text-wrap class="form-error">Phone number should contain numbers only, and be at least 10 digits long</p>
+			</ion-item>
+		</div>
+
+		<!-- EMAIL -->
+		<div class="signin-spacing">
+			<ion-item>
+				<ion-label stacked color="primary">Email *</ion-label>			
+ 				<ion-input #email formControlName="email" type="email" [class.invalid]="_signupForm.controls.email.invalid && (_signupForm.controls.email.dirty || _signupForm.controls.email.touched)"
+ placeholder="you@yourcompany.com" value=""></ion-input>
+			</ion-item>
+			<!-- email error message -->
+			<ion-item  no-lines *ngIf="_signupForm.controls.email.invalid  && (_signupForm.controls.email.dirty || _signupForm.controls.email.touched)">
+				<p ion-text text-wrap class="form-error">Please use correct email format, e.g.:someone@domain.com.</p>
+			</ion-item>
+		</div>
+
+		<!-- PHONE -->
+		<div class="signin-spacing">
+			<ion-item>
+				<ion-label stacked color="primary">Education</ion-label>
+				<ion-input formControlName="education" type="text" [class.invalid]="_signupForm.controls.education.invalid && _signupForm.controls.education.dirty"
+				  placeholder="" value=""></ion-input>
+			</ion-item>
+			<!-- phone error message -->
+			<ion-item no-lines *ngIf="_signupForm.controls.education.invalid  && _signupForm.controls.education.dirty">
+				<p ion-text text-wrap class="form-error"></p>
+			</ion-item>
+		</div>
+
+		<!-- PHONE -->
+		<div class="signin-spacing">
+			<ion-item>
+				<ion-label stacked color="primary">Occupation</ion-label>
+				<ion-input formControlName="occupation_type" type="text" [class.invalid]="_signupForm.controls.occupation_type.invalid && _signupForm.controls.occupation_type.dirty"
+				  placeholder="" value=""></ion-input>
+			</ion-item>
+			<!-- phone error message -->
+			<ion-item no-lines *ngIf="_signupForm.controls.occupation_type.invalid  && _signupForm.controls.occupation_type.dirty">
+				<p ion-text text-wrap class="form-error"></p>
+			</ion-item>
+		</div>
+
+		<!-- PHONE -->
+		<div class="signin-spacing">
+			<ion-item>
+				<ion-label stacked color="primary">Occupation Details</ion-label>
+				<ion-input formControlName="occupation_details" type="text" [class.invalid]="_signupForm.controls.occupation_details.invalid && _signupForm.controls.occupation_details.dirty"
+				  placeholder="" value=""></ion-input>
+			</ion-item>
+			<!-- phone error message -->
+			<ion-item  no-lines *ngIf="_signupForm.controls.occupation_details.invalid  && _signupForm.controls.occupation_details.dirty">
+				<p ion-text text-wrap class="form-error"></p>
+			</ion-item>
+		</div>
+
+		
+	</form>
+</ion-content>
+
+<ion-footer>
+	<ion-toolbar>
+			<button ion-button block color="primary" [disabled]="_signupForm.invalid" type="submit">Submit</button>
+	</ion-toolbar>
+</ion-footer>

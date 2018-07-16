@@ -511,18 +511,38 @@
 
   // RK ELITE Starts
 
-  .toolbar button.bar-buttons {
-    color: $main-text-color;
+  ion-header .toolbar button.bar-button {
+    color: color($colors, white);
   }
   
-  .toolbar-background {
-    background-color: $main-color;
+  ion-header .toolbar-background {
+    background-color: color($colors, primary);
   }
 
-  .toolbar-title {
-    color: $main-text-color;
+  ion-header .toolbar-title {
+    color: color($colors, white);
   }
 
-  .menu-inner .content .item{
-    background-color: $main-color;
+  ion-menu ion-content button .label {
+    font-size: 0.8em;
+  }
+  // .menu-inner .content .item{
+  //   background-color: $main-color;
+  // }
+
+  .text-input::-moz-placeholder, {
+    font-size: 0.7em;
+  }
+  
+  .text-input:-ms-input-placeholder {
+    font-size: 0.7em;
+  }
+  
+  .text-input::-webkit-input-placeholder {
+    text-indent: 0;
+    font-size: 0.7em;
+  }
+
+  p.form-error {
+    color: color($colors, danger);
   }
